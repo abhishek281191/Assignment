@@ -1,0 +1,151 @@
+<!DOCTYPE>
+<html>
+   <head>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <style>
+         /*For Desktop Devices*/
+         @media screen {
+         body{
+         background-color: #EFEFEF;
+         }
+         #content{
+         width: 80%;
+         float: left;
+         }
+         #actions{
+         display: flex;
+         flex-direction: column;
+         float: right;
+         width: 20%
+         }
+         #actions button {
+         border: none;
+         background-color: #72C3DC;
+         box-shadow: 0px 5px #2B8EAD;
+         border-radius: 5px;
+         padding: 10px 30px;
+         color: white;
+         margin-bottom: 20%;
+         }
+         #container {
+         display: flex;
+         flex-wrap: wrap;
+         }
+         #container div {
+         flex: 0 0 32%;                       
+         text-align: center;
+         font-size: 50px;
+         color: white;
+         }
+         .one{background-color: #6F98A8;}
+         .two{background-color: #2B8EAD;}
+         .three{background-color: #2F454E;}
+         .four{background-color: #2B8EAD;}
+         .five{background-color: #2F454E;}
+         .six{background-color: #BFBFBF}
+         .seven{background-color: #BFBFBF;}
+         .eight{background-color: #6F98A8;}
+         .nine{background-color: #2F454E;}
+         }
+
+         /*For Mobile Devices*/
+         @media screen and (max-width: 375px){
+         body{
+         background-color: white;
+         justify-content: center;
+         }
+         #content {
+         width: 100%;
+         }
+         #content div {
+         display: flex;
+         flex-direction: column;
+         }
+         #container div {
+         background-color: #EFEFEF;
+         color: black;
+         font-size: 20px;
+         margin: 3px;
+         }
+         #actions {
+         display: flex;
+         flex-direction: row;
+         width: 100%;
+         justify-content: center;
+         }
+         #actions button {
+         margin: 10px;    
+         }
+         .one{border-left: 5px solid #6F98A8;}
+         .two{border-left: 5px solid #2B8EAD;}
+         .three{border-left: 5px solid #2F454E;}
+         .four{border-left: 5px solid #2B8EAD;}
+         .five{border-left: 5px solid #2F454E;}
+         .six{border-left: 5px solid #BFBFBF}
+         .seven{border-left: 5px solid #BFBFBF;}
+         .eight{border-left: 5px solid #6F98A8;}
+         .nine{border-left: 5px solid #2F454E;}
+         }
+      </style>
+   </head>
+   <body>
+      <div id="actions">
+         <button onclick="shuffle_sort('shuffle')">Shuffle</button>
+         <button onclick="shuffle_sort('sort')"> Sort</button>
+      </div>
+      <div id="content">
+         <div id="container">
+            <div class="one">1</div>
+            <div class="two">2</div>
+            <div class="three">3</div>
+            <div class="four">4</div>
+            <div class="five">5</div>
+            <div class="six">6</div>
+            <div class="seven">7</div>
+            <div class="eight">8</div>
+            <div class="nine">9</div>
+         </div>
+      </div>
+      <script>
+         function shuffle_sort(user_action) {
+           var container = document.getElementById("container");
+           var elementsArray = Array.prototype.slice.call(container.children);
+           elementsArray.forEach(function(element) {
+             container.removeChild(element);
+           })
+           if (user_action == "shuffle") {
+             shuffleArray(elementsArray);
+           } else {
+             sortArray(elementsArray);
+           }
+           elementsArray.forEach(function(element) {
+               container.appendChild(element);
+             })
+         }
+         
+         function shuffleArray(array) {
+           for (var i = array.length - 1; i > 0; i--) {
+             var j = Math.floor(Math.random() * (i + 1));
+             var temp = array[i];
+             array[i] = array[j];
+             array[j] = temp;
+           }
+           return array;
+         }
+         
+         function sortArray(array) {
+           for (var i = 0; i < array.length - 1; i++) {
+             for (var j = 0; j < array.length - 1-i; j++) {
+               if (array[j].innerHTML > array[j + 1].innerHTML) {
+                 var temp = array[j];
+                 array[j] = array[j + 1];
+                 array[j + 1] = temp;
+               }
+             }
+           }
+           return array;
+         }
+         
+      </script>
+   </body>
+</html>
